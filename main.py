@@ -15,67 +15,77 @@ def main():
     print(path)
     # path = 
 
-    # listCharacterPixels = dataFrameManager.calculateBlackBackgroundFeatureSetIdentificationObjectComposite(path)
+    # sort data train,
+    # if character new, create new ObjectDeterminant
+    # qualify character new, if zero space or sizing is different.
+    # marginalize data for likely.
+    # after train set, move to more text.
+    # filter through analysis, update FQ
 
-    # listModifiedKnownFeatureSetIdentificationObject = []
+    listCharacterPixels = dataFrameManager.calculateBlackBackgroundFeatureSetIdentificationObjectComposite(path)
+
+    listModifiedKnownFeatureSetIdentificationObject = []
+    listCharacterPixels = dataFrameManager.seperateCharactersByZeroSpaceColumnsReturnListCharacterPixelsLight(path)
     # listCharacterPixels = dataFrameManager.seperateCharactersByZeroSpaceColumnsReturnListCharacterPixelsDark(path)
-    # indexCharacterPixel = 0
-    # # for characterPixels in listCharacterPixels:
+    print("len")
+    print(len(listCharacterPixels))
+    indexCharacterPixel = 0
+    for characterPixels in listCharacterPixels:
 
-    # knownFeatureSetIdentificationObjectComposite = FeatureSetIdentificationObjectComposite()
+        knownFeatureSetIdentificationObjectComposite = FeatureSetIdentificationObjectComposite()
 
-    # # print("len(listCharacterPixels)")
-    # # print(len(listCharacterPixels[5]))
-    # # if len(characterPixels) == 0:
-    # #     continue
-    # knownFeatureSetIdentificationObject = dataFrameManager.calculateFeatureSetIdentificationObjectComposite1(listCharacterPixels[3])
-    # # knownFeatureSetIdentificationObject = dataFrameManager.calculateFeatureSetIdentificationObjectComposite1(characterPixels)
-    # modifiedKnownFeatureSetIdentificationObject = dataFrameManager.calculateAllZeroSpaceInFeatureSetIdentificationObject(knownFeatureSetIdentificationObject)
+        # print("len(listCharacterPixels)")
+        # print(len(listCharacterPixels[5]))
+        if len(characterPixels) == 0:
+            continue
+        # knownFeatureSetIdentificationObject = dataFrameManager.calculateFeatureSetIdentificationObjectComposite1(listCharacterPixels[9])
+        knownFeatureSetIdentificationObject = dataFrameManager.calculateFeatureSetIdentificationObjectComposite1(characterPixels)
+        modifiedKnownFeatureSetIdentificationObject = dataFrameManager.calculateAllZeroSpaceInFeatureSetIdentificationObject(knownFeatureSetIdentificationObject)
+
+        #Now have all zeriozed in lim zeroSpace objects.
+        #now calculate continuity.
+
+        modifiedKnownFeatureSetIdentificationObject = dataFrameManager.calculateZeroSpaceContinuity(modifiedKnownFeatureSetIdentificationObject)
+        #Need hook featureSetIdentificationObject continuity.
+        
+
+        # print("len(calculationContinuityObject.zeroSpaceObjectComposite.listZeroSpaceObject)")
+        # print(len(modifiedKnownFeatureSetIdentificationObject.calculationContinuityObject.zeroSpaceObjectComposite.listZeroSpaceObject))
+        # for zeroSpaceObject in modifiedKnownFeatureSetIdentificationObject.calculationContinuityObject.zeroSpaceObjectComposite.listZeroSpaceObject:
+        #     print("SPACER")
+        #     for listValue in zeroSpaceObject.listResults:
+        #         for pixelObject in listValue:
+        #             print("pixelObject.xValue")
+        #             print(pixelObject.xValue)
+        #             print(pixelObject.yValue)
+
+        # print("len(modifiedKnownFeatureSetIdentificationObject.pixelObjectComposite.listPixelObjects)")
+        # print(len(modifiedKnownFeatureSetIdentificationObject.pixelObjectComposite.listPixelObjects))
+        if len(modifiedKnownFeatureSetIdentificationObject.pixelObjectComposite.listPixelObjects) == 1:
+            modifiedKnownFeatureSetIdentificationObject.numberClassified = "."
+            listModifiedKnownFeatureSetIdentificationObject.append(modifiedKnownFeatureSetIdentificationObject)
+            indexCharacterPixel += 1
+            continue
+
+        dataFrameManager.calculateZeroSpacePercentageOccupy(modifiedKnownFeatureSetIdentificationObject)
+
+        
+        dataFrameManager.calculateZeroSpaceBorderConnectivity(modifiedKnownFeatureSetIdentificationObject)
+
+        # modifiedKnownFeatureSetIdentificationObject.numberClassified = dataFrameManager.classifyNumber(modifiedKnownFeatureSetIdentificationObject)
+        # print("modifiedKnownFeatureSetIdentificationObject.numberClassified")
+        # print(modifiedKnownFeatureSetIdentificationObject.numberClassified)
 
 
-    # #Now have all zeriozed in lim zeroSpace objects.
-    # #now calculate continuity.
+        listModifiedKnownFeatureSetIdentificationObject.append(modifiedKnownFeatureSetIdentificationObject)
+        # if indexCharacterPixel == 2:
+        #     break
+        indexCharacterPixel += 1
 
-    # modifiedKnownFeatureSetIdentificationObject = dataFrameManager.calculateZeroSpaceContinuity(modifiedKnownFeatureSetIdentificationObject)
-    # #Need hook featureSetIdentificationObject continuity.
-    
 
-    # # print("len(calculationContinuityObject.zeroSpaceObjectComposite.listZeroSpaceObject)")
-    # # print(len(modifiedKnownFeatureSetIdentificationObject.calculationContinuityObject.zeroSpaceObjectComposite.listZeroSpaceObject))
-    # # for zeroSpaceObject in modifiedKnownFeatureSetIdentificationObject.calculationContinuityObject.zeroSpaceObjectComposite.listZeroSpaceObject:
-    # #     print("SPACER")
-    # #     for listValue in zeroSpaceObject.listResults:
-    # #         for pixelObject in listValue:
-    # #             print("pixelObject.xValue")
-    # #             print(pixelObject.xValue)
-    # #             print(pixelObject.yValue)
-
-    # # print("len(modifiedKnownFeatureSetIdentificationObject.pixelObjectComposite.listPixelObjects)")
-    # # print(len(modifiedKnownFeatureSetIdentificationObject.pixelObjectComposite.listPixelObjects))
-    # # if len(modifiedKnownFeatureSetIdentificationObject.pixelObjectComposite.listPixelObjects) == 1:
-    # #     modifiedKnownFeatureSetIdentificationObject.numberClassified = "."
-    # #     listModifiedKnownFeatureSetIdentificationObject.append(modifiedKnownFeatureSetIdentificationObject)
-    # #     indexCharacterPixel += 1
-    # #     continue
-
-    # dataFrameManager.calculateZeroSpacePercentageOccupy(modifiedKnownFeatureSetIdentificationObject)
-
-    
-    # dataFrameManager.calculateZeroSpaceBorderConnectivity(modifiedKnownFeatureSetIdentificationObject)
-
-    # modifiedKnownFeatureSetIdentificationObject.numberClassified = dataFrameManager.classifyNumber(modifiedKnownFeatureSetIdentificationObject)
     # print("modifiedKnownFeatureSetIdentificationObject.numberClassified")
-    # print(modifiedKnownFeatureSetIdentificationObject.numberClassified)
-
-    # listModifiedKnownFeatureSetIdentificationObject.append(modifiedKnownFeatureSetIdentificationObject)
-    # # if indexCharacterPixel == 2:
-    # #     break
-    # indexCharacterPixel += 1
-
-
-    # # print("modifiedKnownFeatureSetIdentificationObject.numberClassified")
-    # # for modifiedKnownFeatureSetIdentificationObject in listModifiedKnownFeatureSetIdentificationObject:
-    # #     print(modifiedKnownFeatureSetIdentificationObject.numberClassified)
+    # for modifiedKnownFeatureSetIdentificationObject in listModifiedKnownFeatureSetIdentificationObject:
+    #     print(modifiedKnownFeatureSetIdentificationObject.numberClassified)
 
     # # given where percentage occupy is above a given percentile, match percentile meaningful and borders of native set.
     # # calculateMatch
@@ -93,13 +103,13 @@ def main():
     # yLim =  pixelObjectComposite.yLim
     # df.plot(kind='scatter',x='x',y='y',color='red', ylim=(0,yLim),xlim=(0,xLim))
     # plt.show()
-def calculateIsZeroSpaceAboveMedianThreshold():
-    continue
-def calculateFromDataSetCompositeRelevantFeaturesForCharacter():
-    continue
-def calculateRelevantTests():
-    #test 1
-    continue
+# def calculateIsZeroSpaceAboveMedianThreshold():
+#     continue
+# def calculateFromDataSetCompositeRelevantFeaturesForCharacter():
+#     continue
+# def calculateRelevantTests():
+#     #test 1
+#     continue
 
 #single out qualifiers.
 #intake data, 
