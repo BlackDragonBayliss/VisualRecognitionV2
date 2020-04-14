@@ -100,7 +100,17 @@ def calculateFromDataSetCompositeRelevantFeaturesForCharacter():
 def calculateRelevantTests():
     #test 1
     continue
-    
+
+#single out qualifiers.
+#intake data, 
+
+
+#update featureQualifiers
+#calculate determinate feature qualifiers.
+#attatch to tests
+#support making tests, finding most relevant qualifies
+#sorting incoming data for fq determination
+
 
 
 def calculateQuadBorder(testingFeatureSetIdentificationObject, listCalculateFeatureSetIdentificationObject):
