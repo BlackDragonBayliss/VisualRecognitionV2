@@ -93,7 +93,13 @@ def main():
     # yLim =  pixelObjectComposite.yLim
     # df.plot(kind='scatter',x='x',y='y',color='red', ylim=(0,yLim),xlim=(0,xLim))
     # plt.show()
-
+def calculateIsZeroSpaceAboveMedianThreshold():
+    continue
+def calculateFromDataSetCompositeRelevantFeaturesForCharacter():
+    continue
+def calculateRelevantTests():
+    continue
+    
 
 
 def calculateQuadBorder(testingFeatureSetIdentificationObject, listCalculateFeatureSetIdentificationObject):
